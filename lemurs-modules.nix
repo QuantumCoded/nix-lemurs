@@ -20,6 +20,10 @@ in {
         default = builtins.readFile ./config.toml;
       };
     };
+    ttyPath = mkOption {
+      type = types.str;
+      default = "/dev/tty2";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -42,7 +46,7 @@ in {
       serviceConfig = {
         ExecStart = "${pkgs.lemurs}/bin/lemurs --config ${cfg.config.path}";
         StandardInput= "tty";
-        TTYPath = "/dev/tty2";
+        TTYPath = cfg.ttyPath;
         TTYReset = "yes";
         TTYVHangup  = "yes";
         Type  = "idle";
