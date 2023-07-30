@@ -40,7 +40,7 @@ in {
       aliases = [ "display-manager.service" ];
       
       serviceConfig = {
-        ExecStart = "${pkgs.lemurs}/bin/lemurs --config ${cfg.}";
+        ExecStart = "${pkgs.lemurs}/bin/lemurs --config ${cfg.config.path}";
         StandardInput= "tty";
         TTYPath = "/dev/tty2";
         TTYReset = "yes";
